@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>tailwind.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="estiliza%C3%A7%C3%A3o-de-sites-com-o-tailwind-css">Estilização de <em>sites</em> com o Tailwind CSS</h1>
+<h2 id="introdu%C3%A7%C3%A3o">Introdução</h2>
+<p>Normalmente os <em>sites</em> que visitamos atualmente possuem alto grau de interatividade, e a aparência do <em>site</em> pode ser crucial para a retenção dos usuários.</p>
+<p>Essa estilização costuma ser realizada em CSS e/ou Javascript, e até é possível criar nossos estilos a partir do zero, porém, é mais fácil e mais produtivo utilizarmos alguma biblioteca ou <em>framework</em> para tal tarefa.</p>
+<p>Algumas das bibliotecas mais comuns para estilização são:</p>
+<ul>
+<li><a href="https://getbootstrap.com/">Bootstrap</a></li>
+<li><a href="https://m3.material.io/">Material Design</a></li>
+<li><a href="https://tailwindcss.com/">Tailwind CSS</a></li>
+</ul>
+<p>O Tailwind CSS é uma biblioteca para estilização de <em>sites</em>, escrita em Javascript, que possui diversas classes prontas para utilização. Seu maior diferencial é que, ao invés de incluir a biblioteca inteira junto com o código do <em>site</em>, é gerado um código CSS com apenas as classes de estilos que foram utilizadas, diminuindo o tamanho do arquivo resultante.</p>
+<h2 id="instala%C3%A7%C3%A3o">Instalação</h2>
+<p>É possível utilizar o Tailwind com ou sem o Node.js instalado. Neste curso iremos utilizar o Node.js, então é necessário fazer o seu <em>download</em> e sua instalação. Para mais informações sobre o Node.js, visite seu <a href="https://nodejs.org/en"><em>site</em></a>. Caso não queira instalar o Node.js, é necessário instalar uma CLI do Tailwind. Para mais informações, consulte este <a href="https://tailwindcss.com/blog/standalone-cli"><em>site</em></a>.</p>
+<p>Passos para a criação de um projeto:</p>
+<ol>
+<li>Crie um diretório onde os arquivos ficarão armazenados e navegue até ele. Por exemplo:</li>
+</ol>
+<pre class="hljs"><code><div>mkdir exemploTailwind
+cd exemploTailwind
+</div></code></pre>
+<ol start="2">
+<li>Adicione o Tailwind através do npm:</li>
+</ol>
+<pre class="hljs"><code><div>npm install -D tailwindcss
+</div></code></pre>
+<ol start="3">
+<li>Crie o arquivo de configuração do Tailwind:</li>
+</ol>
+<pre class="hljs"><code><div>npx tailwindcss init
+</div></code></pre>
+<ol start="4">
+<li>Abra o diretório com o VSCode (ou outro editor de sua escolha):</li>
+</ol>
+<pre class="hljs"><code><div>code -r ./
+</div></code></pre>
+<ol start="5">
+<li>
+<p>Crie uma pasta chamada <code>src</code>, onde ficarão nossos arquivos HTML.</p>
+</li>
+<li>
+<p>Abra o arquivo <code>tailwind.config.js</code>, e altere seu conteúdo para:</p>
+</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-comment">/** <span class="hljs-doctag">@type <span class="hljs-type">{import('tailwindcss').Config}</span> </span>*/</span>
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">content</span>: [<span class="hljs-string">"./src/*.{html, js}"</span>],
+  <span class="hljs-attr">theme</span>: {
+    <span class="hljs-attr">extend</span>: {},
+  },
+  <span class="hljs-attr">plugins</span>: [],
+}
+</div></code></pre>
+<ol start="7">
+<li>Dentro da pasta <code>src</code>, crie um arquivo CSS chamado <code>estilo.css</code>, com o seguinte conteúdo:</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">@tailwind</span> base;
+<span class="hljs-keyword">@tailwind</span> components;
+<span class="hljs-keyword">@tailwind</span> utilities;
+</div></code></pre>
+<ol start="8">
+<li>Execute o seguinte comando no terminal:</li>
+</ol>
+<pre class="hljs"><code><div>npx tailwindcss -i ./src/estilo.css -o ./dist/output.css --watch
+</div></code></pre>
+<ol start="9">
+<li>Dentro da pasta <code>src</code>, crie um arquivo HTML chamado <code>index.html</code>, com o seguinte conteúdo:</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"../dist/output.css"</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-red-500 bg-gray-200"</span>&gt;</span>
+        Olá mundo!
+    <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<ol start="10">
+<li>
+<p>Visite o arquivo HTML no navegador para verificar o funcionamento do Tailwind.</p>
+</li>
+<li>
+<p>(Opcional) Instale a extensão <code>Tailwind CSS IntelliSense</code> se estiver utilizando o VSCode.</p>
+</li>
+</ol>
+<h2 id="tailwind-play">Tailwind Play</h2>
+<p>Também é possível, no <em>site</em> do Tailwind, utilizar as classes sem fazer instalação. O endereço é o <a href="https://play.tailwindcss.com/">https://play.tailwindcss.com/</a>.</p>
+<h2 id="utiliza%C3%A7%C3%A3o">Utilização</h2>
+<p>Para utilizar as classes do Tailwind, basta alterar o atributo <code>class</code> de uma <em>tag</em> HTML. A seguir veremos alguns exemplos.</p>
+<h2 id="tipografia">Tipografia</h2>
+<p>Há três tipos principais de fontes:</p>
+<ul>
+<li><code>font-sans</code></li>
+<li><code>font-serif</code></li>
+<li><code>font-mono</code></li>
+</ul>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"font-serif"</span>&gt;</span>Este é um exemplo de fonte com serifa<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"font-sans"</span>&gt;</span>Este é um exemplo de fonte sem serifa<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"font-mono"</span>&gt;</span>Este é um exemplo de fonte mono (mesma distância horizontal para todos os caracteres)<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<p>Para alterar o tamanho do texto, utilize a classe <code>text-?</code>, sendo <code>?</code>:</p>
+<ul>
+<li><code>xs</code>;</li>
+<li><code>sm</code>;</li>
+<li><code>base</code>;</li>
+<li><code>lg</code>;</li>
+<li><code>xl</code>;</li>
+<li><code>2xl</code>;</li>
+<li><code>3xl</code>;</li>
+<li><code>4xl</code>;</li>
+<li><code>5xl</code>;</li>
+<li><code>6xl</code>;</li>
+<li><code>7xl</code>;</li>
+<li><code>8xl</code>;</li>
+<li><code>9xl</code>.</li>
+</ul>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-xs"</span>&gt;</span>Um exemplo de tamanho de texto<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-base"</span>&gt;</span>Um exemplo de tamanho de texto<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-xl"</span>&gt;</span>Um exemplo de tamanho de texto<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-5xl"</span>&gt;</span>Um exemplo de tamanho de texto<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<p>Para destacar o texto:</p>
+<ul>
+<li><code>italic</code> para itálico;</li>
+<li><code>font-bold</code> para negrito.</li>
+</ul>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"italic"</span>&gt;</span>Este texto está em itálico<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"font-bold"</span>&gt;</span>Este texto está em negrito<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"italic font-bold"</span>&gt;</span>Este texto está em itálico e em negrito<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<p>Para controlar o alinhamento do texto, utilize:</p>
+<ul>
+<li><code>text-left</code> para alinhar à esquerda;</li>
+<li><code>text-center</code> para centralizar o texto;</li>
+<li><code>text-right</code> para alinhar à direita;</li>
+<li><code>text-justify</code> para centralizar.</li>
+</ul>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-left"</span>&gt;</span>Onde estou?<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-right"</span>&gt;</span>Onde estou?<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-center"</span>&gt;</span>Onde estou?<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-justify"</span>&gt;</span>Onde estou?<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<h2 id="cores">Cores</h2>
+<p>Há uma série de cores pré-definidas no Tailwind. Essas cores são referenciadas por uma tonalidade base e um número que representa o brilho dessa cor (quanto menor o valor, maior o brilho). O brilho se inicia em 50 (mais claro), sendo o próximo valor o 100. A partir do 100, incrementa em 100 unidades até chegar ao 900. O 950 representa o brilho mais escuro.</p>
+<p>Existem diversas tonalidades, como <code>red</code>, <code>blue</code>, <code>emerald</code>, etc. Para visualizar essas tonalidades, consulte o <a href="https://tailwindcss.com/docs/customizing-colors"><em>site</em></a>.</p>
+<p>Para alterar a cor do texto, utilize: <code>text-tonalidade-brilho</code>.</p>
+<p>Há também as cores fixas: <code>white</code> e <code>black</code>.</p>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-red-300"</span>&gt;</span>Exemplo de cor de texto<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-orange-400"</span>&gt;</span>Exemplo de cor de texto<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-emerald-500"</span>&gt;</span>Exemplo de cor de texto<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-fuchsia-600"</span>&gt;</span>Exemplo de cor de texto<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-violet-700"</span>&gt;</span>Exemplo de cor de texto<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-blue-800"</span>&gt;</span>Exemplo de cor de texto<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<p>Para alterar a cor de fundo, usamos <code>bg-tonalidade-brilho</code>.</p>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-green-300"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Olá<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-red-800"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-white"</span>&gt;</span>Mundo<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+</div></code></pre>
+<h2 id="margens">Margens</h2>
+<p>Para controlar as margens, usamos normalmente uma palavra indicando a margem desejada, seguida do tamanho. Para indicar a margem, utilizamos:</p>
+<ul>
+<li><code>m</code>: para todas as margens;</li>
+<li><code>mx</code>: para as margens na horizontal (esquerda e direita);</li>
+<li><code>my</code>: para as margens na vertical (superior e inferior);</li>
+<li><code>mt</code>: para a margem superior;</li>
+<li><code>mb</code>: para a margem inferior;</li>
+<li><code>ml</code>: para a margem esquerda;</li>
+<li><code>mr</code>: para a margem direita.</li>
+</ul>
+<p>Em relação ao tamanho da margem, após o identificar, usamos um qualificador:</p>
+<ul>
+<li><code>0</code>: para 0px;</li>
+<li><code>px</code>: para 1px;</li>
+<li><code>1</code>: para 4px;</li>
+<li><code>2</code>: para 8px;</li>
+<li><code>auto</code>: para automático.</li>
+</ul>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-green-300 m-4"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ml-8"</span>&gt;</span>Olá<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-red-800 m-0"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-white mt-10"</span>&gt;</span>Mundo<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<h2 id="espa%C3%A7amento">Espaçamento</h2>
+<p>O espaçamento (<em>padding</em>) define um espaçamento interno dos elementos. Ele segue as mesmas regras das margens, mas seu identificador deve ser o <code>p</code> ao invés do <code>m</code>.</p>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-green-300 p-4"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pl-8"</span>&gt;</span>Olá<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-red-800 p-0"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-white pt-10"</span>&gt;</span>Mundo<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<h2 id="bordas">Bordas</h2>
+<p>Para definir o nível de arredondamento das bordas de um elemento, usamos a classe <code>rounded</code>, seguido de um quantificador:</p>
+<ul>
+<li><code>rounded-none</code>: sem borda arredondada;</li>
+<li><code>rounded-sm</code>: 2 <em>pixels</em> de arredondamento;</li>
+<li><code>rounded</code>: 4 <em>pixels</em> de arredondamento;</li>
+<li><code>rounded-md</code>: 6 <em>pixels</em> de arredondamento;</li>
+<li><code>rounded-lg</code>: 8 <em>pixels</em> de arredondamento;</li>
+<li><code>rounded-xl</code>: 12 <em>pixels</em> de arredondamento;</li>
+<li><code>rounded-2xl</code>: 16 <em>pixels</em> de arredondamento;</li>
+<li><code>rounded-3xl</code>: 24 <em>pixels</em> de arredondamento;</li>
+<li><code>rounded-full</code>: 9999 <em>pixels</em> de arredondamento.</li>
+</ul>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-yellow-400 text-black rounded-none"</span>&gt;</span>Salvar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-yellow-400 text-black rounded-sm"</span>&gt;</span>Salvar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-yellow-400 text-black rounded-md"</span>&gt;</span>Salvar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-yellow-400 text-black rounded-lg"</span>&gt;</span>Salvar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-yellow-400 text-black rounded-xl"</span>&gt;</span>Salvar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-yellow-400 text-black rounded-2xl"</span>&gt;</span>Salvar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-yellow-400 text-black rounded-3xl"</span>&gt;</span>Salvar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-yellow-400 text-black rounded-full"</span>&gt;</span>Salvar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<p>Também é possível definir o arredondamento para bordas específicas, utilizando:</p>
+<ul>
+<li><code>-tl</code>: superior esquerda;</li>
+<li><code>-tr</code>: superior direita;</li>
+<li><code>-bl</code>: inferior esquerda;</li>
+<li><code>-br</code>: inferior direita;</li>
+<li><code>-t</code>: superior esquerda e superior direita;</li>
+<li><code>-b</code>: inferior esquerda e inferior direita;</li>
+<li><code>-l</code>: superior esquerda e inferior esquerda;</li>
+<li><code>-r</code>: superior direita e inferior direita;</li>
+</ul>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-emerald-400 text-black rounded-l-xl"</span>&gt;</span>Salvar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-emerald-400 text-black rounded-l-md rounded-r-3xl"</span>&gt;</span>Salvar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-emerald-400 text-black rounded-tl-3xl rounded-br-3xl"</span>&gt;</span>Salvar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<p>A largura da borda é definida com a classe <code>border</code> seguida do tamanho, em <em>pixels</em>, podendo ser: <code>0</code>, <code>2</code>, <code>4</code>, <code>8</code>. Caso utilize apenas <code>border</code>, a borda terá 1 <em>pixel</em>.</p>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-black"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-rose-600 text-white border-0"</span>&gt;</span>Cancelar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-rose-600 text-white border"</span>&gt;</span>Cancelar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-rose-600 text-white border-2"</span>&gt;</span>Cancelar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-rose-600 text-white border-4"</span>&gt;</span>Cancelar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-rose-600 text-white border-8"</span>&gt;</span>Cancelar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+</div></code></pre>
+<p>Também é possível definir apenas bordas específicas, utilizando:</p>
+<ul>
+<li><code>-l</code>: para a borda esquerda;</li>
+<li><code>-r</code>: para a borda direita;</li>
+<li><code>-t</code>: para a borda superior;</li>
+<li><code>-b</code>: para a borda inferior;</li>
+<li><code>-x</code>: para as bordas esquerda e direita;</li>
+<li><code>-y</code>: para as bordas superior e inferior.</li>
+</ul>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-black"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-rose-600 text-white border-l-8"</span>&gt;</span>Cancelar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-rose-600 text-white border-r-8"</span>&gt;</span>Cancelar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-rose-600 text-white border-t-8"</span>&gt;</span>Cancelar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-rose-600 text-white border-b-8"</span>&gt;</span>Cancelar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-rose-600 text-white border-x-8"</span>&gt;</span>Cancelar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-rose-600 text-white border-y-8"</span>&gt;</span>Cancelar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+</div></code></pre>
+<p>Para alterar a cor de uma borda, utilize além da classe já utilizada, a classe <code>border-{color}</code>, onde <code>{color}</code> representa a cor desejada.</p>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-slate-600 text-white border-4 border-red-500"</span>&gt;</span>Cancelar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-slate-600 text-white border-x-4 border-yellow-400"</span>&gt;</span>Cancelar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-slate-600 text-white border-y-8 border-green-500"</span>&gt;</span>Cancelar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-slate-600 text-white border-t-4 border-blue-300"</span>&gt;</span>Cancelar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+</div></code></pre>
+<p>Para definir o estilo da borda, utilize a classe <code>border</code> seguida de:</p>
+<ul>
+<li><code>-solid</code>: para borda contínua;</li>
+<li><code>-dashed</code>: para borda serrilhada;</li>
+<li><code>-dotted</code>: para borda pontilhada;</li>
+<li><code>-double</code>: para borda dupla;</li>
+<li><code>-hidden</code>: para borda escondida;</li>
+<li><code>-none</code>: para não utilizar borda.</li>
+</ul>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-red-400"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-neutral-300 text-black border-4 border-black border-solid"</span>&gt;</span>Limpar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-neutral-300 text-black border-4 border-black border-dashed"</span>&gt;</span>Limpar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-neutral-300 text-black border-4 border-black border-dotted"</span>&gt;</span>Limpar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-neutral-300 text-black border-4 border-black border-double"</span>&gt;</span>Limpar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-neutral-300 text-black border-4 border-black border-hidden"</span>&gt;</span>Limpar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"py-2 px-4 m-8 bg-neutral-300 text-black border-4 border-black border-none"</span>&gt;</span>Limpar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+</div></code></pre>
+<h2 id="estados">Estados</h2>
+<p>Toda classe pode ser utiliza com uma outra classe condicional, indicando que aquela classe só será ativada se a condição for verdadeira. Alguns exemplo são:</p>
+<ul>
+<li><code>hover:</code>: indica quando o ponteiro do <em>mouse</em> está sobre o componente;</li>
+<li><code>focus:</code>: indica quando um elemento possui o foco;</li>
+<li><code>active:</code>: indica quando o elemento está ativo.</li>
+</ul>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"px-4 py-2 bg-green-200 text-black rounded-md hover:bg-green-400 active:bg-green-600"</span>&gt;</span>Salvar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<p>Também há classes condicionais para serem utilizadas com formulários, como:</p>
+<ul>
+<li><code>disabled:</code>: define características para elementos marcados como <code>disabled</code>;</li>
+<li><code>invalid:</code> define características para elementos inválidos de acordo com seu requisitos.</li>
+</ul>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-slate-200 border border-black disabled:cursor-not-allowed"</span> <span class="hljs-attr">disabled</span>/&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"email"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-slate-200 border border-black invalid:bg-red-200"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"px-4 py-2 bg-slate-400 rounded-lg"</span>&gt;</span>Enviar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</div></code></pre>
+<h2 id="modo-escuro">Modo escuro</h2>
+<p>O modo escuro também funciona como uma classe condicional, utilizando <code>dark:</code> antes de uma classe para designar classes que serão utilizadas quando o modo escuro estiver habilitado.</p>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-neutral-100 dark:bg-neutral-800"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-black dark:text-white"</span>&gt;</span>Olá, bem vindo ao meu site.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-blue-700 dark:bg-blue-300 text-white dark:text-black px-4 py-2 rounded-lg"</span>&gt;</span>Continuar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+</div></code></pre>
+<p>Por padrão, o Tailwind obtém essa informação do sistema operacional através do recurso <code>prefers-color-scheme</code>. Caso seu sistema operacional não tenha esse recurso, é possível simular seu valor no inspetor de elementos do navegador Firefox.</p>
+<p>Caso não queira trabalhar com a detecção automática do tema, é possível fazer essa alteração manualmente. Edite o arquivo <code>tailwind.config.js</code> para o seguinte código:</p>
+<pre class="hljs"><code><div><span class="hljs-comment">/** <span class="hljs-doctag">@type <span class="hljs-type">{import('tailwindcss').Config}</span> </span>*/</span>
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">content</span>: [<span class="hljs-string">"./src/*.{html, js}"</span>],
+  <span class="hljs-attr">theme</span>: {
+    <span class="hljs-attr">extend</span>: {},
+  },
+  <span class="hljs-attr">plugins</span>: [],
+  <span class="hljs-attr">darkMode</span>: <span class="hljs-string">'class'</span>
+}
+</div></code></pre>
+<p>A partir de agora, o tema será sempre o claro. Caso queira usar o tema escuro, adicione a classe <code>dark</code> em um item anterior na árvore de elementos da página. Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"html"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"../dist/output.css"</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-neutral-100 dark:bg-neutral-800"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-black dark:text-white"</span>&gt;</span>Olá, bem vindo ao meu site.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-blue-700 dark:bg-blue-300 text-white dark:text-black px-4 py-2 rounded-lg"</span>&gt;</span>Continuar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-purple-700 dark:bg-purple-300 text-white dark:text-black px-4 py-2 rounded-lg"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"changeTheme()"</span>&gt;</span>Alterar tema<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">changeTheme</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">let</span> html = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'html'</span>);
+    <span class="hljs-keyword">if</span>(html.classList.contains(<span class="hljs-string">'dark'</span>))
+      html.classList.remove(<span class="hljs-string">'dark'</span>);
+    <span class="hljs-keyword">else</span>
+      html.classList.add(<span class="hljs-string">'dark'</span>);
+  }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<h2 id="responsividade">Responsividade</h2>
+<p>Todas as classes utilitárias do Tailwind também podem ser aplicadas de acordo com o tamanho da tela em que a página está sendo exibida. As classes a serem utilizadas para diferenciar tamanho de tela são:</p>
+<ul>
+<li><code>sm</code>: para telas de largura superior ou igual a 640 <em>pixels</em>;</li>
+<li><code>md</code>: para telas de largura superior ou igual a 768 <em>pixels</em>;</li>
+<li><code>lg</code>: para telas de largura superior ou igual a 1024 <em>pixels</em>;</li>
+<li><code>xl</code>: para telas de largura superior ou igual a 1280 <em>pixels</em>;</li>
+<li><code>2xl</code>: para telas de largura superior ou igual a 1536 <em>pixels</em>.</li>
+</ul>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-red-500 sm:bg-orange-500 md:bg-yellow-500 lg:bg-emerald-500 xl:bg-blue-500 2xl:bg-purple-500"</span>&gt;</span>
+  A cor do fundo da página vai mudar de acordo com o tamanho da tela
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+</div></code></pre>
+<p>E possível usar as classes <code>visible</code> e <code>invisible</code> para exibir elementos de acordo com o tamanho da tela:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-blue-600"</span>&gt;</span>Eu vou sempre ser exibido, independente do tamanho da tela<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-green-600 invisible md:visible"</span>&gt;</span>Eu vou ser exibido apenas em telas médias para cima<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-purple-600 visible md:invisible"</span>&gt;</span>Eu vou ser exibido de telas pequenas até telas médias<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+</div></code></pre>
+<h2 id="classes-personalizadas">Classes personalizadas</h2>
+<p>Em algumas situações (botões, por exemplo), repetimos muito uma certa combinação de classes. Para esses casos, podemos criar componentes com a diretiva <code>@layer</code>, para facilitar a manutenção ao se precisar trocar um valor para todas as instâncias.</p>
+<p>No arquivo <code>estilo.css</code>, adicione o seguinte código no final do conteúdo:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">@layer</span> components {
+    <span class="hljs-selector-class">.btn-success</span> {
+        @apply bg-emerald-500 <span class="hljs-attribute">hover</span>:bg-emerald-<span class="hljs-number">600</span> active:bg-emerald-<span class="hljs-number">700</span> text-white font-bold py-<span class="hljs-number">2</span> px-<span class="hljs-number">4</span> rounded-lg;
+    }
+
+    <span class="hljs-selector-class">.btn-failure</span> {
+        @apply bg-red-500 <span class="hljs-attribute">hover</span>:bg-red-<span class="hljs-number">600</span> active:bg-red-<span class="hljs-number">700</span> text-white font-bold py-<span class="hljs-number">2</span> px-<span class="hljs-number">4</span> rounded-lg;
+    }
+}
+</div></code></pre>
+<p>O código anterior introduz duas classes novas, <code>btn-sucess</code> e <code>btn-failure</code>, que podem ser usadas no restante do código. Por exemplo, em <code>index.html</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn-success"</span>&gt;</span>Salvar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn-failure"</span>&gt;</span>Cancelar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<h2 id="layout">Layout</h2>
+<p>Use um elemento com a classe <code>container</code> para que ele tenha a sua largura máxima como a largura mínima de acordo com o tamanho de tela (<code>sm</code>, <code>md</code>, <code>lg</code>, etc.). Para centralizar, utilize a classe <code>mx-auto</code>.</p>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container bg-lime-300"</span>&gt;</span>
+  Eu não estou centralizado
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container bg-teal-300 mx-auto"</span>&gt;</span>
+  Eu estou centralizado
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p>Para posicionar itens dentro do espaço disponível de um <em>container</em>, utilizamos a propriedade <code>flex</code>. Podemos utilizar a classe <code>flex-row</code> para indicar que os elementos sejam dispostos em linha, ou <code>flex-col</code> para indicar que eles devem estar dispostos como uma coluna. Também é possível utilizar <code>-reverse</code> com as duas classes anteriores para inverter a ordem de exibição dos elementos.</p>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container bg-sky-200 mx-auto mb-4"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex flex-row"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-purple-200 text-center"</span>&gt;</span>Elemento 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-amber-200 text-center"</span>&gt;</span>Elemento 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-emerald-200 text-center"</span>&gt;</span>Elemento 3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container bg-sky-200 mx-auto mb-4"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex flex-col"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-purple-200 text-center"</span>&gt;</span>Elemento 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-amber-200 text-center"</span>&gt;</span>Elemento 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-emerald-200 text-center"</span>&gt;</span>Elemento 3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container bg-sky-200 mx-auto mb-4"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex flex-row-reverse"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-purple-200 text-center"</span>&gt;</span>Elemento 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-amber-200 text-center"</span>&gt;</span>Elemento 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-emerald-200 text-center"</span>&gt;</span>Elemento 3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container bg-sky-200 mx-auto"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex flex-col-reverse"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-purple-200 text-center"</span>&gt;</span>Elemento 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-amber-200 text-center"</span>&gt;</span>Elemento 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-emerald-200 text-center"</span>&gt;</span>Elemento 3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p>Para informar a largura inicial de um elemento dentro de um <code>flex</code>, utilizamos as classes <code>basis-{tamanho}</code>. Por exemplo, <code>basis-1</code> é referente a 4 <em>pixels</em>, enquanto <code>basis-2</code> é referente a 8 <em>pixels</em>. No entanto, normalmente utilizamos <code>flex</code> com conteúdo cuja largura se altera, e podemos utilizar classes que usam a porcentagem do tamanho:</p>
+<ul>
+<li><code>basis-1/2</code>: 50% da largura;</li>
+<li><code>basis-1/3</code>: 33% da largura;</li>
+<li><code>basis-2/3</code>: 66% da largura;</li>
+<li><code>basis-1/4</code>: 25% da largura;</li>
+<li><code>basis-3/4</code>: 75% da largura;</li>
+<li><code>basis-full</code>: 100% da largura;</li>
+<li>Entre outros.</li>
+</ul>
+<p>Exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-sky-200 mx-auto mb-4"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex flex-row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-purple-200 text-center basis-1/4"</span>&gt;</span>Elemento 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-amber-200 text-center basis-1/4"</span>&gt;</span>Elemento 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-emerald-200 text-center basis-2/4"</span>&gt;</span>Elemento 3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p>Para criar elementos com uma quantidade fixa de items dispostos em uma linha, utilizamos a classe <code>grid</code>, seguida de uma classe <code>grid-cols-{n}</code>, em que n varia de 1 até 12. Por exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container mx-auto mb-4"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"grid grid-cols-4"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-cyan-600 text-white text-center"</span>&gt;</span>Elemento 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-orange-600 text-white text-center"</span>&gt;</span>Elemento 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-lime-600 text-white text-center"</span>&gt;</span>Elemento 3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-pink-600 text-white text-center"</span>&gt;</span>Elemento 4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p>Para definir a quantidade de células que um elemento ocupa, podemos utilizar a classe <code>col-span-{n}</code>, em que n varia de 1 até 12. Por exemplo:</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container mx-auto mb-4"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"grid grid-cols-12"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-cyan-600 text-white text-center col-span-1"</span>&gt;</span>ID<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-orange-600 text-white text-left pl-2 col-span-9"</span>&gt;</span>Nome<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-lime-600 text-white text-center col-span-2"</span>&gt;</span>E-mail<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<h2 id="componentes-prontos">Componentes prontos</h2>
+<p>O Tailwind é apenas uma biblioteca de estilização, que não possui componentes prontos. Algumas bibliotecas de componente prontos utilizam o Tailwind como base. Algumas das mais famosas são:</p>
+<ul>
+<li><a href="https://tailwindui.com/?ref=top">TailwindUI</a></li>
+<li><a href="https://flowbite.com/">Flowbite</a></li>
+<li><a href="https://daisyui.com/">daisyUI</a></li>
+<li><a href="https://tw-elements.com/">TW Elements</a></li>
+</ul>
+
+</body>
+</html>
